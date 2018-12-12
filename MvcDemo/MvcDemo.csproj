@@ -145,6 +145,10 @@
     <Compile Include="Migrations\201812121237111_UpdateOnStudentsTableDefinition.Designer.cs">
       <DependentUpon>201812121237111_UpdateOnStudentsTableDefinition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121241496_AddSomeRecordsToStudentsTable.cs" />
+    <Compile Include="Migrations\201812121241496_AddSomeRecordsToStudentsTable.Designer.cs">
+      <DependentUpon>201812121241496_AddSomeRecordsToStudentsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MvcDemoDb.cs" />
     <Compile Include="Models\Student.cs" />
@@ -211,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812121237111_UpdateOnStudentsTableDefinition.resx">
       <DependentUpon>201812121237111_UpdateOnStudentsTableDefinition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121241496_AddSomeRecordsToStudentsTable.resx">
+      <DependentUpon>201812121241496_AddSomeRecordsToStudentsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

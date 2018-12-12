@@ -1,6 +1,7 @@
 ﻿using MvcDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,13 +22,22 @@ namespace MvcDemo.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var studentModel = _db.Students.Find(id);
+
+            return View(studentModel);
         }
 
         [HttpPost]
         public ActionResult Edit(Student studentModel)
         {
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Entry(studentModel).State = EntityState.Modified;
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(studentModel);
         }
 
         protected override void Dispose(bool disposing)
