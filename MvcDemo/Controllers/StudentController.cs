@@ -9,37 +9,34 @@ namespace MvcDemo.Controllers
 {
     public class StudentController : Controller
     {
+        MvcDemoDb _db = new MvcDemoDb();
+
         // GET: Student
         public ActionResult Index()
         {
-            return View(studentList);
+            var studentModel = _db.Students.ToList();
+
+            return View(studentModel);
         }
 
         public ActionResult Edit(int id)
         {
-            var student = studentList.Where(s => s.StudentId == id).FirstOrDefault();
-
-            return View(student);
+            return View();
         }
 
         [HttpPost]
         public ActionResult Edit(Student studentModel)
         {
-            var student = studentList.Where(s => s.StudentId == studentModel.StudentId).FirstOrDefault();
-            student.StudentName = studentModel.StudentName;
-            student.Age = studentModel.Age;
-
             return RedirectToAction("Index");
         }
 
-        List<Student> studentList = new List<Student>{
-                            new Student() { StudentId = 1, StudentName = "John", Age = 18 } ,
-                            new Student() { StudentId = 2, StudentName = "Steve",  Age = 21 } ,
-                            new Student() { StudentId = 3, StudentName = "Bill",  Age = 25 } ,
-                            new Student() { StudentId = 4, StudentName = "Ram" , Age = 20 } ,
-                            new Student() { StudentId = 5, StudentName = "Ron" , Age = 31 } ,
-                            new Student() { StudentId = 4, StudentName = "Chris" , Age = 17 } ,
-                            new Student() { StudentId = 4, StudentName = "Rob" , Age = 19 }
-                        };
+        protected override void Dispose(bool disposing)
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

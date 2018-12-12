@@ -10,9 +10,12 @@ namespace MvcDemo.Models
     {
         public int StudentId { get; set; }
 
+        [Required]
+        [StringLength(100)]
         [Display(Name="Name")]
         public string StudentName { get; set; }
 
+        [Required]
         public int Age { get; set; }
     }
 }
