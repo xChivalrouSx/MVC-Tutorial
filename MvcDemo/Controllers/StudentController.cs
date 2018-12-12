@@ -12,7 +12,6 @@ namespace MvcDemo.Controllers
     {
         MvcDemoDb _db = new MvcDemoDb();
 
-        // GET: Student
         public ActionResult Index()
         {
             var studentModel = _db.Students.ToList();
@@ -25,6 +24,26 @@ namespace MvcDemo.Controllers
             var studentModel = _db.Students.Find(id);
 
             return View(studentModel);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Student studentModel)
+        {
+            var student = new Student
+            {
+                StudentName = studentModel.StudentName,
+                Age = studentModel.Age
+            };
+
+            _db.Students.Add(student);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
