@@ -28,6 +28,13 @@ namespace MvcDemo.Controllers
             return View(studentModel);
         }
 
+        public ActionResult Details(int id)
+        {
+            var studentModel = _db.Students.Find(id);
+
+            return View(studentModel);
+        }
+
         public ActionResult Create()
         {
             return View();
