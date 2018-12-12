@@ -35,6 +35,13 @@ namespace MvcDemo.Controllers
             return View(studentModel);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var studentModel = _db.Students.Find(id);
+
+            return View(studentModel);
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -70,6 +77,17 @@ namespace MvcDemo.Controllers
                 return RedirectToAction("Index");
             }
             return View(studentModel);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult Remove(int id)
+        {
+            var student = _db.Students.Find(id);
+            _db.Students.Remove(student);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         #endregion

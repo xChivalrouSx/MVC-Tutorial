@@ -11,11 +11,17 @@ namespace MvcDemo
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");            
 
             routes.MapRoute(
                 name: "StudentDetailsRoute",
                 url: "Student/Details",
+                defaults: new { controller = "Student", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "StudentDeleteRoute",
+                url: "Student/Delete",
                 defaults: new { controller = "Student", action = "Index" }
             );
 
