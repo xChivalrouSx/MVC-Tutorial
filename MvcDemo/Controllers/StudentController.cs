@@ -15,6 +15,23 @@ namespace MvcDemo.Controllers
             return View(studentList);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var student = studentList.Where(s => s.StudentId == id).FirstOrDefault();
+
+            return View(student);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Student studentModel)
+        {
+            var student = studentList.Where(s => s.StudentId == studentModel.StudentId).FirstOrDefault();
+            student.StudentName = studentModel.StudentName;
+            student.Age = studentModel.Age;
+
+            return RedirectToAction("Index");
+        }
+
         List<Student> studentList = new List<Student>{
                             new Student() { StudentId = 1, StudentName = "John", Age = 18 } ,
                             new Student() { StudentId = 2, StudentName = "Steve",  Age = 21 } ,
