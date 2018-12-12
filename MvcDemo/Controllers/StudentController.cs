@@ -12,6 +12,8 @@ namespace MvcDemo.Controllers
     {
         MvcDemoDb _db = new MvcDemoDb();
 
+        #region[ HttpGET Methods ]
+
         public ActionResult Index()
         {
             var studentModel = _db.Students.ToList();
@@ -30,6 +32,10 @@ namespace MvcDemo.Controllers
         {
             return View();
         }
+
+        #endregion
+
+        #region[ HttpPost Methods ]
 
         [HttpPost]
         public ActionResult Create(Student studentModel)
@@ -59,6 +65,10 @@ namespace MvcDemo.Controllers
             return View(studentModel);
         }
 
+        #endregion
+
+        #region[ Override Methods ]
+
         protected override void Dispose(bool disposing)
         {
             if (_db != null)
@@ -67,5 +77,8 @@ namespace MvcDemo.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #endregion
+
     }
 }
