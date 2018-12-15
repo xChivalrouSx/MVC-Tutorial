@@ -16,6 +16,7 @@ namespace MvcDemo.Models
         public string StudentName { get; set; }
 
         [Required]
+        [Range(5,90)]
         public int Age { get; set; }
     }
 }
